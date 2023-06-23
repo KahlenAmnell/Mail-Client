@@ -1,2 +1,3 @@
 module-info.class
 pl\bernat\Launcher.class
+pl\bernat\view\LoginWindowController.class
