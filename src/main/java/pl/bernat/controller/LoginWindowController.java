@@ -1,4 +1,4 @@
-package pl.bernat.view;
+package pl.bernat.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

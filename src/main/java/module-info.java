@@ -5,4 +5,5 @@ module Mail.Client {
 
     opens pl.bernat.view;
     opens pl.bernat;
+    opens pl.bernat.controller;
 }
