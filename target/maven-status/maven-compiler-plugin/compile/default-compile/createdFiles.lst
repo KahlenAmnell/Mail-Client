@@ -1,3 +1,4 @@
-pl\bernat\view\LoginWindowController.class
+pl\bernat\controller\MainWindowController.class
 module-info.class
 pl\bernat\Launcher.class
+pl\bernat\controller\LoginWindowController.class
