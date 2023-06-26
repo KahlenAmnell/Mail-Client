@@ -6,6 +6,7 @@ import pl.bernat.view.ViewFactory;
 public abstract class BaseController {
     private EmailManager emailManager;
     private ViewFactory viewFactory;
+    private String fxmlName;
 
     public BaseController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
         this.emailManager = emailManager;
@@ -13,5 +14,7 @@ public abstract class BaseController {
         this.fxmlName = fxmlName;
     }
 
-    private String fxmlName;
+    public String getFxmlName() {
+        return fxmlName;
+    }
 }
