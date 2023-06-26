@@ -25,7 +25,7 @@ public class ViewFactory {
     }
 
     public void showMainWindow(){
-        System.out.println("show login window called");
+        System.out.println("show main window called");
 
         BaseController controller = new MainWindowController(emailManager, this, "/view/MainWindow.fxml");
         initializeStage(controller);
@@ -46,5 +46,9 @@ public class ViewFactory {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void closeStage(Stage stageToClose){
+        stageToClose.close();
     }
 }
