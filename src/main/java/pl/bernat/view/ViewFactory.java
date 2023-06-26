@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import pl.bernat.EmailManager;
 import pl.bernat.controller.BaseController;
 import pl.bernat.controller.LoginWindowController;
+import pl.bernat.controller.MainWindowController;
 
 import java.io.IOException;
 
@@ -20,8 +21,19 @@ public class ViewFactory {
         System.out.println("show login window called");
 
         BaseController controller = new LoginWindowController(emailManager, this, "/view/LoginWindow.fxml");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(controller.getFxmlName()));
-        fxmlLoader.setController(controller);
+        initializeStage(controller);
+    }
+
+    public void showMainWindow(){
+        System.out.println("show login window called");
+
+        BaseController controller = new MainWindowController(emailManager, this, "/view/MainWindow.fxml");
+        initializeStage(controller);
+    }
+
+    private void initializeStage(BaseController baseController){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(baseController.getFxmlName()));
+        fxmlLoader.setController(baseController);
         Parent parent;
         try{
             parent = fxmlLoader.load();
