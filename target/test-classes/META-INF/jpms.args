@@ -1,4 +1,0 @@
---patch-module
-Mail.Client=_
---add-reads
-Mail.Client=ALL-UNNAMED
