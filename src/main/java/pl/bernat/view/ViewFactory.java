@@ -8,6 +8,7 @@ import pl.bernat.EmailManager;
 import pl.bernat.controller.BaseController;
 import pl.bernat.controller.LoginWindowController;
 import pl.bernat.controller.MainWindowController;
+import pl.bernat.controller.OptionWindowController;
 
 import java.io.IOException;
 
@@ -28,6 +29,13 @@ public class ViewFactory {
         System.out.println("show main window called");
 
         BaseController controller = new MainWindowController(emailManager, this, "/view/MainWindow.fxml");
+        initializeStage(controller);
+    }
+
+    public void showOptionsWindow(){
+        System.out.println("show options window called");
+
+        BaseController controller = new OptionWindowController(emailManager, this, "/view/OptionsWindow.fxml");
         initializeStage(controller);
     }
 
