@@ -6,8 +6,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import pl.bernat.EmailManager;
+import pl.bernat.view.ViewFactory;
 
-public class LoginWindowController {
+public class LoginWindowController extends BaseController {
 
     @FXML
     private PasswordField PasswordField;
@@ -20,6 +22,10 @@ public class LoginWindowController {
 
     @FXML
     private Button loginBtn;
+
+    public LoginWindowController(EmailManager emailManager, ViewFactory viewFactory, String fxmlName) {
+        super(emailManager, viewFactory, fxmlName);
+    }
 
     @FXML
     void loginButtonAction(ActionEvent event) {

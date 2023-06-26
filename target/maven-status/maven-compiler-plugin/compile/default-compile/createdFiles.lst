@@ -1,4 +1,7 @@
-pl\bernat\controller\MainWindowController.class
 module-info.class
+pl\bernat\EmailManager.class
+pl\bernat\controller\BaseController.class
+pl\bernat\controller\MainWindowController.class
+pl\bernat\view\ViewFactory.class
 pl\bernat\Launcher.class
 pl\bernat\controller\LoginWindowController.class
