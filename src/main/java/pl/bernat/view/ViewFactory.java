@@ -18,6 +18,27 @@ public class ViewFactory {
     public ViewFactory(EmailManager emailManager) {
         this.emailManager = emailManager;
     }
+
+    //view options handling
+    private ColorTheme colorTheme = ColorTheme.DEFAULT ;
+    private FontSize fontSize = FontSize.MEDIUM;
+
+    public void setColorTheme(ColorTheme colorTheme) {
+        this.colorTheme = colorTheme;
+    }
+
+    public void setFontSize(FontSize fontSize) {
+        this.fontSize = fontSize;
+    }
+
+    public ColorTheme getColorTheme() {
+        return colorTheme;
+    }
+
+    public FontSize getFontSize() {
+        return fontSize;
+    }
+
     public void showLoginWindow(){
         System.out.println("show login window called");
 
