@@ -23,7 +23,7 @@ public class ViewFactory {
     }
 
     //view options handling
-    private ColorTheme colorTheme = ColorTheme.DEFAULT ;
+    private ColorTheme colorTheme = ColorTheme.DARK ;
     private FontSize fontSize = FontSize.MEDIUM;
 
     public void setColorTheme(ColorTheme colorTheme) {
