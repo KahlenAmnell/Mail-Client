@@ -89,7 +89,9 @@ public class ViewFactory {
     public void updateStyles() {
         for (Stage stage: activeStages) {
             Scene scene = stage.getScene();
-            //handla css
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(getClass().getResource(ColorTheme.getCssPath(colorTheme)).toExternalForm());
+            scene.getStylesheets().add(getClass().getResource(FontSize.getCssPath(fontSize)).toExternalForm());
         }
     }
 }
