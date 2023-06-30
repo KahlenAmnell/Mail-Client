@@ -2,17 +2,22 @@ package pl.bernat.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import pl.bernat.Config;
 import pl.bernat.EmailManager;
 import pl.bernat.controller.services.LoginService;
 import pl.bernat.model.EmailAccount;
 import pl.bernat.view.ViewFactory;
 
-public class LoginWindowController extends BaseController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoginWindowController extends BaseController implements Initializable {
 
     @FXML
     private PasswordField passwordField;
@@ -46,6 +51,14 @@ public class LoginWindowController extends BaseController {
                         Stage stage = (Stage) errorLabel.getScene().getWindow();
                         viewFactory.closeStage(stage);
                         return;
+                    case FAILED_BY_CREDENTIALS:
+                        errorLabel.setText("invalid credentials");
+                    case FAILED_BY_UNEXPECTED_ERROR:
+                        errorLabel.setText("unexpected error");
+                    case FAILED_BY_NETWORK:
+                        errorLabel.setText("no internet connection");
+                    default:
+                        errorLabel.setText("unexpected error");
                 }
             });
         }
@@ -63,5 +76,10 @@ public class LoginWindowController extends BaseController {
         return true;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        textField.setText(Config.EMAIL_PASSWORD);
+        passwordField.setText(Config.EMAIL_ADDRESS);
+    }
 }
 
