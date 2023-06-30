@@ -4,7 +4,7 @@ import pl.bernat.EmailManager;
 import pl.bernat.view.ViewFactory;
 
 public abstract class BaseController {
-    private EmailManager emailManager;
+    protected EmailManager emailManager;
     protected ViewFactory viewFactory;
     private String fxmlName;
 
