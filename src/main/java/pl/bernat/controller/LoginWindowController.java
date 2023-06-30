@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import pl.bernat.EmailManager;
 import pl.bernat.controller.services.LoginService;
 import pl.bernat.model.EmailAccount;
@@ -30,22 +31,24 @@ public class LoginWindowController extends BaseController {
     }
 
     @FXML
-    void loginButtonAction(ActionEvent event) {
+    void loginButtonAction() {
         System.out.println("click");
         if(filedsAreValid()){
             EmailAccount emailAccount = new EmailAccount(textField.getText(), passwordField.getText());
             LoginService loginService = new LoginService(emailAccount, emailManager);
-            EmailLoginResult emailLoginResult = loginService.login();
-
-            switch (emailLoginResult){
-                case SUCCESS:
-                    System.out.println("login succesfull!!" + emailAccount);
-            }
+            loginService.start();
+            loginService.setOnSucceeded(event -> {
+                EmailLoginResult emailLoginResult = loginService.getValue();
+                switch (emailLoginResult){
+                    case SUCCESS:
+                        System.out.println("login succesfull!!" + emailAccount);
+                        viewFactory.showMainWindow();
+                        Stage stage = (Stage) errorLabel.getScene().getWindow();
+                        viewFactory.closeStage(stage);
+                        return;
+                }
+            });
         }
-
-/*        viewFactory.showMainWindow();
-        Stage stage = (Stage) errorLabel.getScene().getWindow();
-        viewFactory.closeStage(stage);*/
     }
 
     private boolean filedsAreValid() {
