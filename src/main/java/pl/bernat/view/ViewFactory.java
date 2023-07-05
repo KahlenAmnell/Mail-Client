@@ -26,6 +26,12 @@ public class ViewFactory {
     private ColorTheme colorTheme = ColorTheme.DEFAULT ;
     private FontSize fontSize = FontSize.MEDIUM;
 
+    public boolean isMainViewInitialized() {
+        return mainViewInitialized;
+    }
+
+    private boolean mainViewInitialized = false;
+
     public void setColorTheme(ColorTheme colorTheme) {
         this.colorTheme = colorTheme;
     }
@@ -54,6 +60,7 @@ public class ViewFactory {
 
         BaseController controller = new MainWindowController(emailManager, this, "/view/MainWindow.fxml");
         initializeStage(controller);
+        mainViewInitialized = true;
     }
 
     public void showOptionsWindow(){
