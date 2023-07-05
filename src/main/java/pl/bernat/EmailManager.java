@@ -2,10 +2,11 @@ package pl.bernat;
 
 import javafx.scene.control.TreeItem;
 import pl.bernat.model.EmailAccount;
+import pl.bernat.model.EmailTreeItem;
 
 public class EmailManager {
     //Folder handling:
-    private TreeItem<String> foldersRoot = new TreeItem<String>("");
+    private EmailTreeItem<String> foldersRoot = new EmailTreeItem<String>("");
 
     public TreeItem<String> getFoldersRoot() {
         return foldersRoot;
