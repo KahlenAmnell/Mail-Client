@@ -8,4 +8,5 @@ module Mail.Client {
 
     opens pl.bernat;
     opens pl.bernat.controller;
+    opens pl.bernat.model;
 }
