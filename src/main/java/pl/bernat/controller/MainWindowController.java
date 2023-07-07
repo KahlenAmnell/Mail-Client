@@ -94,7 +94,7 @@ public class MainWindowController extends BaseController implements Initializabl
                 subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, String>("subject"));
                 recipientCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, String>("recipient"));
                 sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, Integer>("size"));
-                dateCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, Date>("data"));
+                dateCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, Date>("date"));
 
         }
 
