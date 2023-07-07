@@ -12,6 +12,7 @@ import javafx.util.Callback;
 import pl.bernat.EmailManager;
 import pl.bernat.model.EmailMessage;
 import pl.bernat.model.EmailTreeItem;
+import pl.bernat.model.SizeInteger;
 import pl.bernat.view.ViewFactory;
 
 import java.net.URL;
@@ -29,7 +30,7 @@ public class MainWindowController extends BaseController implements Initializabl
         @FXML
         private TableColumn<EmailMessage, String> senderCol;
         @FXML
-        private TableColumn<EmailMessage, Integer> sizeCol;
+        private TableColumn<EmailMessage, SizeInteger> sizeCol;
         @FXML
         private TableColumn<EmailMessage, String> subjectCol;
         @FXML
@@ -93,7 +94,7 @@ public class MainWindowController extends BaseController implements Initializabl
                 senderCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, String>("sender"));
                 subjectCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, String>("subject"));
                 recipientCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, String>("recipient"));
-                sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, Integer>("size"));
+                sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, SizeInteger>("size"));
                 dateCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, Date>("date"));
 
         }
