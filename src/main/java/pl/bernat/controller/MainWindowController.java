@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.web.WebView;
 import javafx.util.Callback;
 import pl.bernat.EmailManager;
+import pl.bernat.controller.services.MessageRendererService;
 import pl.bernat.model.EmailMessage;
 import pl.bernat.model.EmailTreeItem;
 import pl.bernat.model.SizeInteger;
@@ -35,6 +36,7 @@ public class MainWindowController extends BaseController implements Initializabl
         private TableColumn<EmailMessage, String> subjectCol;
         @FXML
         private TableColumn<EmailMessage, Date> dateCol;
+        private MessageRendererService messageRendererService;
 
         @FXML
         private TreeView<String> emailsTreeView;
@@ -58,6 +60,22 @@ public class MainWindowController extends BaseController implements Initializabl
                 setUpEmailsTableView();
                 setUpFolderSelection();
                 setUpBoldRows();
+                setUpMessageRendererService();
+                setUpMessageSelection();
+        }
+
+        private void setUpMessageSelection() {
+                emailsTableView.setOnMouseClicked(event -> {
+                        EmailMessage emailMessage = emailsTableView.getSelectionModel().getSelectedItem();
+                        if(emailMessage != null){
+                                messageRendererService.setEmailMessage(emailMessage);
+                                messageRendererService.restart();
+                        }
+                });
+        }
+
+        private void setUpMessageRendererService() {
+                messageRendererService = new MessageRendererService(emailWebView.getEngine());
         }
 
         private void setUpBoldRows() {
