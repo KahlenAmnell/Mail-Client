@@ -5,10 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import pl.bernat.EmailManager;
-import pl.bernat.controller.BaseController;
-import pl.bernat.controller.LoginWindowController;
-import pl.bernat.controller.MainWindowController;
-import pl.bernat.controller.OptionWindowController;
+import pl.bernat.controller.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,24 +46,22 @@ public class ViewFactory {
     }
 
     public void showLoginWindow(){
-        System.out.println("show login window called");
-
         BaseController controller = new LoginWindowController(emailManager, this, "/view/LoginWindow.fxml");
         initializeStage(controller);
     }
 
     public void showMainWindow(){
-        System.out.println("show main window called");
-
         BaseController controller = new MainWindowController(emailManager, this, "/view/MainWindow.fxml");
         initializeStage(controller);
         mainViewInitialized = true;
     }
 
     public void showOptionsWindow(){
-        System.out.println("show options window called");
-
         BaseController controller = new OptionWindowController(emailManager, this, "/view/OptionsWindow.fxml");
+        initializeStage(controller);
+    }
+    public void showComposeMessageWindow(){
+        BaseController controller = new ComposeMessageController(emailManager, this, "/view/ComposeMessageWindow.fxml");
         initializeStage(controller);
     }
 
