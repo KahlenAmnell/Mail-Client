@@ -65,4 +65,21 @@ public class EmailManager {
             e.printStackTrace();
         }
     }
+    public void setUnread() {
+        try {
+            selectedMessage.setRead(false);
+            selectedMessage.getMessage().setFlag(Flags.Flag.SEEN, false);
+            selectedFolder.incrementMessageCount();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void deleteSelectedMessage() {
+        try {
+            selectedMessage.getMessage().setFlag(Flags.Flag.DELETED, true);
+            selectedFolder.getEmailMessages().remove(selectedMessage);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
