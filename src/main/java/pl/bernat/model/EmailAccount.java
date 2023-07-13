@@ -16,6 +16,11 @@ public class EmailAccount {
         return password;
     }
 
+    @Override
+    public String toString() {
+        return address;
+    }
+
     public Properties getProperties() {
         return properties;
     }

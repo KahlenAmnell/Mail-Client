@@ -1,5 +1,7 @@
 package pl.bernat;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 import pl.bernat.controller.services.FetchFoldersService;
 import pl.bernat.controller.services.FolderUpdaterService;
@@ -33,6 +35,10 @@ public class EmailManager {
     }
 
     private FolderUpdaterService folderUpdaterService;
+    private ObservableList<EmailAccount> emailAccounts = FXCollections.observableArrayList();
+    public ObservableList<EmailAccount> getEmailAccounts(){
+        return emailAccounts;
+    }
     //Folder handling:
     private EmailTreeItem<String> foldersRoot = new EmailTreeItem<String>("");
 
@@ -49,6 +55,7 @@ public class EmailManager {
         folderUpdaterService.start();
     }
     public void addEmailAccount(EmailAccount emailAccount){
+        emailAccounts.add(emailAccount);
         EmailTreeItem<String> treeItem = new EmailTreeItem<String>(emailAccount.getAddress());
         FetchFoldersService fetchFoldersService = new FetchFoldersService(emailAccount.getStore(), treeItem, folderList);
         fetchFoldersService.start();
