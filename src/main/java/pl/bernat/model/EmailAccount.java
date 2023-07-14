@@ -1,5 +1,6 @@
 package pl.bernat.model;
 
+import javax.mail.Session;
 import javax.mail.Store;
 import java.util.Properties;
 
@@ -7,6 +8,16 @@ public class EmailAccount {
     private String address;
     private String password;
     private Properties properties;
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    private Session session;
 
     public String getAddress() {
         return address;
@@ -49,7 +60,8 @@ public class EmailAccount {
 
         properties.put("mail.transport.protocol", "smtps");
         properties.put("mail.smtps.host", "imap.wp.pl");
+        properties.put("mail.smtp.port", "465");
         properties.put("mail.smtps.auth", "true");
-        properties.put("outgoingHost", "imap.wp.pl");
+        properties.put("outgoingHost", "smtp.wp.pl");
     }
 }

@@ -52,9 +52,7 @@ public class MessageRendererService extends Service {
         stringBuffer.setLength(0); //clears the SB
         Message message = emailMessage.getMessage();
         String contentType = message.getContentType();
-        if(isSimpleType(contentType)){
-            stringBuffer.append(message.getContent().toString());
-        } else if(isMultipartType(contentType)){
+        if(isMultipartType(contentType)){
             Multipart multipart = (Multipart) message.getContent();
             for(int i=multipart.getCount()-1; i>=0; i--){
                 BodyPart bodyPart = multipart.getBodyPart(i);
