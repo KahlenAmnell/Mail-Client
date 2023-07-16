@@ -1,0 +1,33 @@
+/*Theme base font sizes:*/
+.errorText{
+    -fx-font-size: 10pt;
+}
+
+.big{
+   -fx-font-size: 16pt;
+}
+Button, Label, ChoiceBox, Slider, TextField{
+    -fx-font-size: 10pt;
+}
+
+Slider .axis {
+    -fx-font-size: 10pt;
+}
+.text-field {
+    -fx-font-size: 10pt;
+}
+
+.text-field:focused {
+    -fx-font-size: 10pt;
+}
+/*Table view:*/
+.table-view .column-header-background .label{
+    -fx-font-size: 9pt;
+}
+.table-view .table-cell{
+    -fx-font-size: 9pt;
+}
+/*Tree view:*/
+.tree-cell{
+    -fx-font-size: 9pt;
+}
