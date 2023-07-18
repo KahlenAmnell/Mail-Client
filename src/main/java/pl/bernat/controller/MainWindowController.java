@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 public class MainWindowController extends BaseController implements Initializable {
         private MenuItem markUnreadMenuItem = new MenuItem("Mark as unread");
         private MenuItem deleteMessageMenuItem = new MenuItem("Delete message");
+        private MenuItem showMessageDetailsMenuItem = new MenuItem("Show details");
         @FXML
         private WebView emailWebView;
 
@@ -77,6 +78,9 @@ public class MainWindowController extends BaseController implements Initializabl
                 deleteMessageMenuItem.setOnAction(event -> {
                         emailManager.deleteSelectedMessage();
                         emailWebView.getEngine().loadContent("");
+                });
+                showMessageDetailsMenuItem.setOnAction(event -> {
+                        viewFactory.showEmailDetailsWindow();
                 });
         }
 
@@ -137,7 +141,7 @@ public class MainWindowController extends BaseController implements Initializabl
                 sizeCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, SizeInteger>("size"));
                 dateCol.setCellValueFactory(new PropertyValueFactory<EmailMessage, Date>("date"));
 
-                emailsTableView.setContextMenu(new ContextMenu(markUnreadMenuItem, deleteMessageMenuItem));
+                emailsTableView.setContextMenu(new ContextMenu(markUnreadMenuItem, deleteMessageMenuItem, showMessageDetailsMenuItem));
         }
 
         private void setUpEmailsTreeView() {

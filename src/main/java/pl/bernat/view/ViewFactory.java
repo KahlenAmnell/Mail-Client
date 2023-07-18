@@ -44,6 +44,10 @@ public class ViewFactory {
     public FontSize getFontSize() {
         return fontSize;
     }
+    public void showEmailDetailsWindow(){
+        BaseController controller = new EmailDetailsController(emailManager, this, "/view/EmailDetailsWindow.fxml");
+        initializeStage(controller);
+    }
 
     public void showLoginWindow(){
         BaseController controller = new LoginWindowController(emailManager, this, "/view/LoginWindow.fxml");
