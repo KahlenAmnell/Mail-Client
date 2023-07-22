@@ -1,5 +1,7 @@
 package pl.bernat.controller;
 
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,12 +17,14 @@ import pl.bernat.view.ViewFactory;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeUtility;
+import java.awt.*;
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class EmailDetailsController extends BaseController implements Initializable {
-    private String LOCATION_OF_DOWNLOAD = System.getProperty("user.home") + "/Downloads/";
+    private String LOCATION_OF_DOWNLOAD = "C:\\Users\\X1 Carbon 5th\\Downloads\\";
     @FXML
     private Label attachementsLabel;
     @FXML
@@ -56,8 +60,7 @@ public class EmailDetailsController extends BaseController implements Initializa
         if(emailMessage.hasAttachments()){
             for(MimeBodyPart mimeBodyPart: emailMessage.getAttachmentList()){
                 try {
-
-                    Button button = new Button(MimeUtility.decodeText(mimeBodyPart.getFileName()));
+                    AttachementButton button = new AttachementButton(mimeBodyPart);
                     hBoxDownloads.getChildren().add(button);
                 } catch (MessagingException e) {
                     e.printStackTrace();
@@ -67,6 +70,57 @@ public class EmailDetailsController extends BaseController implements Initializa
             }
         } else {
             attachementsLabel.setText("");
+        }
+    }
+    private class AttachementButton extends Button{
+        private String fileName;
+        private  MimeBodyPart mimeBodyPart;
+        private String downloadedFilePath;
+
+        public AttachementButton(MimeBodyPart mimeBodyPart) throws MessagingException, UnsupportedEncodingException {
+            this.mimeBodyPart = mimeBodyPart;
+            this.fileName = MimeUtility.decodeText(mimeBodyPart.getFileName());
+            this.setText(fileName);
+            this.downloadedFilePath = LOCATION_OF_DOWNLOAD + fileName;
+
+            this.setOnAction(e -> downloadAttachement());
+        }
+
+        private void downloadAttachement(){
+            colorBlue();
+            Service service = new Service() {
+                @Override
+                protected Task createTask() {
+                    return new Task() {
+                        @Override
+                        protected Object call() throws Exception {
+                            mimeBodyPart.saveFile(downloadedFilePath);
+                            return null;
+                        }
+                    };
+                }
+            };
+            service.restart();
+            service.setOnSucceeded(e -> {
+                    colorGreen();
+                    this.setOnAction(e2 -> {
+                        File file = new File(downloadedFilePath);
+                        Desktop desktop = Desktop.getDesktop();
+                        if(file.exists()){
+                            try {
+                                desktop.open(file);
+                            } catch (Exception exc){
+                                exc.printStackTrace();
+                            }
+                        }
+                    });
+            });
+        }
+        private void colorBlue(){
+                this.setStyle("-fx-background-color: Blue");
+        }
+        private void colorGreen(){
+            this.setStyle("-fx-background-color: Green");
         }
     }
 }

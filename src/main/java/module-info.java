@@ -5,6 +5,7 @@ module Mail.Client {
     requires javafx.web;
     requires activation;
     requires java.mail;
+    requires java.desktop;
 
     opens pl.bernat;
     opens pl.bernat.controller;
