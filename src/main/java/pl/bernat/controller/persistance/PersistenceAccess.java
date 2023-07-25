@@ -4,9 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersistenceAccess {
-    private String VALID_ACCOUNTS_LOCATION = System.getenv("APPDATA") + "\\ValidAccount.ser";
-    public List<ValidAccount> loadFromPersistance(){
+public class PersistenceAccess implements Serializable{
+    private String VALID_ACCOUNTS_LOCATION = System.getProperty("user.home") + File.separator + "validAccount.ser";
+    public List<ValidAccount> loadFromPersistence(){
         List<ValidAccount> resultList = new ArrayList<ValidAccount>();
         try{
             FileInputStream fileInputStream = new FileInputStream(VALID_ACCOUNTS_LOCATION);
@@ -18,7 +18,7 @@ public class PersistenceAccess {
         }
         return resultList;
     }
-    public void saveToPersistance(List<ValidAccount> validAccounts){
+    public void saveToPersistence(List<ValidAccount> validAccounts){
         try {
             File file = new File(VALID_ACCOUNTS_LOCATION);
             FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -26,7 +26,7 @@ public class PersistenceAccess {
             objectOutputStream.writeObject(validAccounts);
             objectOutputStream.close();
             fileOutputStream.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
